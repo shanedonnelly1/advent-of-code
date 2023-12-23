@@ -59,6 +59,19 @@ const log = (logMessage: string, debug?: boolean) => {
   }
 };
 
+export const getCalibrationValueFromLine = (line: string, debug?: boolean) => {
+  log(`${line}`, debug);
+  const { firstDigit, index: firstDigitIndex } = getFirstDigitAndIndex(line);
+  if (firstDigit === undefined) {
+    log("  No first digit found", debug);
+    return 0;
+  }
+  log(`  First digit ${firstDigit} (found at index ${firstDigitIndex})`, debug);
+  const lastDigit = getLastDigit(line, firstDigitIndex);
+  log(`  Last digit ${lastDigit}`, debug);
+  return Number(`${firstDigit}${lastDigit}`);
+};
+
 export const getCalibrationValueFromFile = async (
   file: PathLike,
   debug?: boolean
@@ -66,19 +79,7 @@ export const getCalibrationValueFromFile = async (
   var sum = 0;
   const fileHandle = await open(file);
   for await (const line of fileHandle.readLines()) {
-    log(`${line}`, debug);
-    const { firstDigit, index: firstDigitIndex } = getFirstDigitAndIndex(line);
-    if (firstDigit === undefined) {
-      log("  No first digit found", debug);
-      continue;
-    }
-    log(
-      `  First digit ${firstDigit} (found at index ${firstDigitIndex})`,
-      debug
-    );
-    const lastDigit = getLastDigit(line, firstDigitIndex);
-    log(`  Last digit ${lastDigit}`, debug);
-    const value = Number(`${firstDigit}${lastDigit}`);
+    const value = getCalibrationValueFromLine(line, debug);
     log(`  Line value ${value}`, debug);
     sum += value;
   }
