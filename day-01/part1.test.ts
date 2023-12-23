@@ -9,5 +9,5 @@ test("Calibration value from part1.input.142.txt to equal 142", async () => {
 });
 
 test("Calibration value from input.full.txt to equal 54951", async () => {
-  expect(await getCalibrationValueFromFile("./input.full.txt")).toBe(54951);
+  expect(await getCalibrationValueFromFile("./input.txt")).toBe(54951);
 });
