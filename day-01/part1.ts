@@ -1,4 +1,5 @@
 import { open } from "node:fs/promises";
+import { PathLike } from "node:fs";
 
 const getFlagValueFromArgs = (flag: string, defaultValue: string | number) => {
   var flagValueFromArgs;
@@ -13,12 +14,20 @@ const getFlagValueFromArgs = (flag: string, defaultValue: string | number) => {
   return flagValueFromArgs || defaultValue;
 };
 
-const getExpectedSum = () => {
+const getExpectedValue = () => {
   return Number(getFlagValueFromArgs("-e", 0));
 };
 
 const getFilePath = () => {
   return String(getFlagValueFromArgs("-f", "./input.txt"));
+};
+
+const getDebug = () => {
+  const stringValue = String(getFlagValueFromArgs("-d", "false"));
+  if (stringValue.toLowerCase() === "true") {
+    return true;
+  }
+  return false;
 };
 
 const getFirstDigitAndIndex = (line: string) => {
@@ -44,32 +53,51 @@ const getLastDigit = (line: string, endPoint: number) => {
   return Number(line.charAt(endPoint));
 };
 
-const processFile = async (expectedSum?: number) => {
-  const file = getFilePath();
-  const fileHandle = await open(file);
-
-  var sum = 0;
-  for await (const line of fileHandle.readLines()) {
-    console.log(`${line}`);
-    const { firstDigit, index: firstDigitIndex } = getFirstDigitAndIndex(line);
-    if (firstDigit === undefined) {
-      console.log("  No first digit found");
-      continue;
-    }
-    console.log(
-      `  First digit ${firstDigit} (found at index ${firstDigitIndex})`
-    );
-    const lastDigit = getLastDigit(line, firstDigitIndex);
-    console.log(`  Last digit ${lastDigit}`);
-    sum += Number(`${firstDigit}${lastDigit}`);
-  }
-  if (expectedSum && sum !== expectedSum) {
-    console.error(`Expected sum ${expectedSum} but got ${sum}`);
-  } else if (expectedSum && sum === expectedSum) {
-    console.log(`Sum ${sum} as expected`);
-  } else {
-    console.log(`Sum ${sum}`);
+const log = (logMessage: string, debug?: boolean) => {
+  if (debug) {
+    console.log(logMessage);
   }
 };
 
-processFile(getExpectedSum());
+export const getCalibrationValueFromFile = async (
+  file: PathLike,
+  debug?: boolean
+) => {
+  var sum = 0;
+  const fileHandle = await open(file);
+  for await (const line of fileHandle.readLines()) {
+    log(`${line}`, debug);
+    const { firstDigit, index: firstDigitIndex } = getFirstDigitAndIndex(line);
+    if (firstDigit === undefined) {
+      log("  No first digit found", debug);
+      continue;
+    }
+    log(
+      `  First digit ${firstDigit} (found at index ${firstDigitIndex})`,
+      debug
+    );
+    const lastDigit = getLastDigit(line, firstDigitIndex);
+    log(`  Last digit ${lastDigit}`, debug);
+    const value = Number(`${firstDigit}${lastDigit}`);
+    log(`  Line value ${value}`, debug);
+    sum += value;
+  }
+  return sum;
+};
+
+const expectedValue = getExpectedValue();
+(async () => {
+  const calibrationValue = await getCalibrationValueFromFile(
+    getFilePath(),
+    getDebug()
+  );
+  if (expectedValue && calibrationValue !== expectedValue) {
+    console.error(
+      `Expected value ${expectedValue} but got ${calibrationValue}`
+    );
+  } else if (expectedValue && calibrationValue === expectedValue) {
+    console.log(`Value ${calibrationValue} as expected`);
+  } else {
+    console.log(`Value ${calibrationValue}`);
+  }
+})();
