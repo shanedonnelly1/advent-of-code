@@ -1,34 +1,7 @@
 import { open } from "node:fs/promises";
 import { PathLike } from "node:fs";
-
-const getFlagValueFromArgs = (flag: string, defaultValue: string | number) => {
-  var flagValueFromArgs;
-  const inputFlagIndex = process.argv.indexOf(flag);
-
-  // Checks for flag in argv and to see if a value is provided
-  if (inputFlagIndex > -1 && process.argv.length >= inputFlagIndex + 1) {
-    // Retrieve the value after flag
-    flagValueFromArgs = process.argv[inputFlagIndex + 1];
-  }
-  // If no value, return default.
-  return flagValueFromArgs || defaultValue;
-};
-
-const getExpectedValue = () => {
-  return Number(getFlagValueFromArgs("-e", 0));
-};
-
-const getFilePath = () => {
-  return String(getFlagValueFromArgs("-f", "./input.txt"));
-};
-
-const getDebug = () => {
-  const stringValue = String(getFlagValueFromArgs("-d", "false"));
-  if (stringValue.toLowerCase() === "true") {
-    return true;
-  }
-  return false;
-};
+import { getFilePath, getExpectedValue, getDebug } from "./args";
+import { log } from "./debug";
 
 const getFirstDigitAndIndex = (line: string) => {
   for (var i = 0; i < line.length; i++) {
@@ -51,12 +24,6 @@ const getLastDigit = (line: string, endPoint: number) => {
     }
   }
   return Number(line.charAt(endPoint));
-};
-
-const log = (logMessage: string, debug?: boolean) => {
-  if (debug) {
-    console.log(logMessage);
-  }
 };
 
 export const getCalibrationValueFromLine = (line: string, debug?: boolean) => {
