@@ -1,6 +1,5 @@
 import { open } from "node:fs/promises";
 import { PathLike } from "node:fs";
-import { getFilePath, getExpectedValue, getDebug } from "./args";
 import { log } from "./debug";
 
 const getFirstDigitAndIndex = (line: string) => {
@@ -52,20 +51,3 @@ export const getCalibrationValueFromFile = async (
   }
   return sum;
 };
-
-const expectedValue = getExpectedValue();
-(async () => {
-  const calibrationValue = await getCalibrationValueFromFile(
-    getFilePath(),
-    getDebug()
-  );
-  if (expectedValue && calibrationValue !== expectedValue) {
-    console.error(
-      `Expected value ${expectedValue} but got ${calibrationValue}`
-    );
-  } else if (expectedValue && calibrationValue === expectedValue) {
-    console.log(`Value ${calibrationValue} as expected`);
-  } else {
-    console.log(`Value ${calibrationValue}`);
-  }
-})();
