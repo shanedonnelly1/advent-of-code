@@ -47,11 +47,11 @@
 * Create files from template
 
     ```bash
-    cp ../index.01.ts .
-    cp ../part1.ts .
-    cp ../part1.test.ts .
-    cp ../args.ts .    
-    cp ../debug.ts .
+    cp ../template/index.01.ts .
+    cp ../template/part1.ts .
+    cp ../template/part1.test.ts .
+    cp ../shared/args.ts .    
+    cp ../shared/debug.ts .
     ```
 
 * Run the index file
