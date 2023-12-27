@@ -51,7 +51,6 @@
     cp ../template/part1.ts .
     cp ../template/part1.test.ts .
     cp ../shared/args.ts .    
-    cp ../shared/debug.ts .
     ```
 
 * Run the index file
