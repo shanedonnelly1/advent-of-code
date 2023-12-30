@@ -1,20 +1,19 @@
-// import { getCalibrationValueFromFile } from "./part1";
+import { getPossibleGameValueFromFile } from "./part1";
 import { getFilePath, getExpectedValue, getDebug } from "./args";
 
-console.log("Boom");
-
-// (async () => {
-//   const calibrationValue = await getCalibrationValueFromFile(
-//     getFilePath(),
-//     getDebug()
-//   );
-//   if (expectedValue && calibrationValue !== expectedValue) {
-//     console.error(
-//       `Expected value ${expectedValue} but got ${calibrationValue}`
-//     );
-//   } else if (expectedValue && calibrationValue === expectedValue) {
-//     console.log(`Value ${calibrationValue} as expected`);
-//   } else {
-//     console.log(`Value ${calibrationValue}`);
-//   }
-// })();
+const expectedValue = getExpectedValue();
+(async () => {
+  const possibleGameValue = await getPossibleGameValueFromFile(
+    getFilePath(),
+    getDebug()
+  );
+  if (expectedValue && possibleGameValue !== expectedValue) {
+    console.error(
+      `Expected value ${expectedValue} but got ${possibleGameValue}`
+    );
+  } else if (expectedValue && possibleGameValue === expectedValue) {
+    console.log(`Value ${possibleGameValue} as expected`);
+  } else {
+    console.log(`Value ${possibleGameValue}`);
+  }
+})();

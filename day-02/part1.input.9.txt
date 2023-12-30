@@ -1,0 +1,4 @@
+Game 6: 2 red, 3 green; 1 blue, 15 red, 2 green; 1 green, 7 red
+Game 7: 16 blue, 4 green, 9 red; 6 red, 2 blue, 12 green; 2 red, 5 green, 14 blue; 11 blue, 13 red; 10 blue, 3 red, 17 green; 1 green, 12 blue
+Game 8: 14 red, 12 green, 1 blue; 5 blue, 7 green, 12 red; 8 green, 1 red, 8 blue; 8 blue, 2 green, 15 red; 9 blue, 12 red, 10 green; 4 blue, 15 red, 1 green
+Game 9: 2 red, 7 green, 5 blue; 1 red, 5 blue, 13 green; 5 blue
