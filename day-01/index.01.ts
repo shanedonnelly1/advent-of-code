@@ -1,5 +1,5 @@
 import { getCalibrationValueFromFile } from "./part1";
-import { getFilePath, getExpectedValue, getDebug } from "./args";
+import { getFilePath, getExpectedValue, getDebug } from "../shared/args";
 
 const expectedValue = getExpectedValue();
 (async () => {

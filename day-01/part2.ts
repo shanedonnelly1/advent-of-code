@@ -1,6 +1,6 @@
 import { open } from "node:fs/promises";
 import { PathLike } from "node:fs";
-import { log } from "./debug";
+import { log } from "../shared/debug";
 
 const convertStringToNumber = (string: string) => {
   return string
