@@ -7,13 +7,13 @@ import {
 
 test("Calibration value from part2.input.362.txt to equal 362", async () => {
   expect(
-    await getCalibrationValueFromFile("./day-01/part2.input.362.txt")
+    await getCalibrationValueFromFile("./day-01/data/part2.input.362.txt")
   ).toBe(362);
 });
 
 test("Calibration value from part2.input.281.txt to equal 281", async () => {
   expect(
-    await getCalibrationValueFromFile("./day-01/part2.input.281.txt")
+    await getCalibrationValueFromFile("./day-01/data/part2.input.281.txt")
   ).toBe(281);
 });
 

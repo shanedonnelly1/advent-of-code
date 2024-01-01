@@ -4,20 +4,11 @@ Repo for my solutions to the [Advent of Code](https://adventofcode.com/2023/).
 
 ## Setup new day
 
-* Create new folder in folder advent-of-code
+* Copy template folder to new folder in advent-of-code (using day-04 as example)
 
     ```bash
     cd ~/Documents/developments/repos/react-tests/advent-of-code
-    mkdir day-xx
-    cd day-xx
-    ```
-
-* Create files from template (day-xx)
-
-    ```bash
-    cp ../day-xx/index.01.ts .
-    cp ../day-xx/part1.* .
-    cp ../day-xx/input.txt
+    cp -R day-xx day-04
     ```
 
 * Change all references to day-xx in new directory to the current day.

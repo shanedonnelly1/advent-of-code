@@ -6,9 +6,9 @@ import {
 } from "./part1";
 
 test("Possible game value from input.txt to equal 8", async () => {
-  expect(await getPossibleGameValueFromFile("./day-02/part1.input.8.txt")).toBe(
-    8
-  );
+  expect(
+    await getPossibleGameValueFromFile("./day-02/data/part1.input.8.txt")
+  ).toBe(8);
 });
 
 test("Possible game for all items in part1.input.8.txt", () => {
@@ -16,9 +16,9 @@ test("Possible game for all items in part1.input.8.txt", () => {
 });
 
 test("Possible game value from input.txt to equal 9", async () => {
-  expect(await getPossibleGameValueFromFile("./day-02/part1.input.9.txt")).toBe(
-    9
-  );
+  expect(
+    await getPossibleGameValueFromFile("./day-02/data/part1.input.9.txt")
+  ).toBe(9);
 });
 
 // test("Possible game value from 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green' to equal 1", () => {
