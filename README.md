@@ -10,17 +10,20 @@
     cd day-xx
     ```
 
-* Create files from template
+* Create files from template (day-xx)
 
     ```bash
-    cp ../template/index.01.ts .
-    cp ../template/part1.ts .
-    cp ../template/part1.test.ts .
+    cp ../day-xx/index.01.ts .
+    cp ../day-xx/part1.* .
+    cp ../day-xx/input.txt
     ```
+
+* Change all references to day-xx in new directory to the current day.
 
 * Run the index file
 
     ```bash
+    cd ~/Documents/developments/repos/react-tests/advent-of-code
     npx ts-node day-xx/index.01
     ```
 

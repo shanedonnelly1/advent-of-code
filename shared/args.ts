@@ -15,8 +15,8 @@ export const getExpectedValue = () => {
   return Number(getFlagValueFromArgs("-e", 0));
 };
 
-export const getFilePath = () => {
-  return String(getFlagValueFromArgs("-f", "./input.txt"));
+export const getFilePath = (currentPath: string = ".") => {
+  return String(getFlagValueFromArgs("-f", `${currentPath}/input.txt`));
 };
 
 export const getDebug = () => {
