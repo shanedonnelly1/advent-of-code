@@ -1,5 +1,7 @@
 # Advent of code
 
+Repo for my solutions to the [Advent of Code](https://adventofcode.com/2023/).
+
 ## Setup new day
 
 * Create new folder in folder advent-of-code
