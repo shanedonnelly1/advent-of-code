@@ -5,9 +5,9 @@ import { log } from "../shared/debug";
 export const isPartNumber = (
   value: string,
   position: number,
-  previousLine: string,
   currentLine: string,
-  nextLine: string
+  previousLine?: string,
+  nextLine?: string
 ) => {
   const valueLength = value.length;
   for (var i = position - 1; i <= position + valueLength; i += 1) {
@@ -15,10 +15,14 @@ export const isPartNumber = (
     if (i < 0) {
       continue;
     }
-    if (i < previousLine.length && regEx.test(previousLine[i])) {
+    if (
+      previousLine &&
+      i < previousLine.length &&
+      regEx.test(previousLine[i])
+    ) {
       return true;
     }
-    if (i < nextLine.length && regEx.test(nextLine[i])) {
+    if (nextLine && i < nextLine.length && regEx.test(nextLine[i])) {
       return true;
     }
   }
