@@ -2,6 +2,29 @@ import { open } from "node:fs/promises";
 import { PathLike } from "node:fs";
 import { log } from "../shared/debug";
 
+export const isPartNumber = (
+  value: string,
+  position: number,
+  previousLine: string,
+  currentLine: string,
+  nextLine: string
+) => {
+  const valueLength = value.length;
+  for (var i = position - 1; i <= position + valueLength; i += 1) {
+    const regEx = /[!@#\$%\^&\*\(\)_\-\+=]/;
+    if (i < 0) {
+      continue;
+    }
+    if (i < previousLine.length && regEx.test(previousLine[i])) {
+      return true;
+    }
+    if (i < nextLine.length && regEx.test(nextLine[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
 export const getProcessedValueFromLine = (line: string, debug?: boolean) => {
   log(`${line}`, debug);
   return 0;
