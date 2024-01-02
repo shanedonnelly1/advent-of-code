@@ -25,3 +25,9 @@ Repo for my solutions to the [Advent of Code](https://adventofcode.com/2023/).
     ```bash
     npx jest
     ```
+
+* Start developing - runs jest in watch mode.
+
+    ```bash
+    npm run dev
+    ```
