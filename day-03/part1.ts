@@ -5,7 +5,6 @@ import { log } from "../shared/debug";
 export const isPartNumber = (
   value: string,
   position: number,
-  currentLine: string,
   previousLine?: string,
   nextLine?: string
 ) => {
