@@ -5,12 +5,23 @@ import { log } from "../shared/debug";
 export const isPartNumber = (
   value: string,
   position: number,
+  currentLine: string,
   previousLine?: string,
   nextLine?: string
 ) => {
+  const regEx = /[!@#\$%\^&\*\(\)_\-\+=]/;
   const valueLength = value.length;
+  // Check for parts on current line - before and after the value
+  if (position > 0 && regEx.test(currentLine[position - 1])) {
+    return true;
+  }
+  if (
+    position + value.length < currentLine.length &&
+    regEx.test(currentLine[position + value.length])
+  ) {
+    return true;
+  }
   for (var i = position - 1; i <= position + valueLength; i += 1) {
-    const regEx = /[!@#\$%\^&\*\(\)_\-\+=]/;
     if (i < 0) {
       continue;
     }
@@ -55,7 +66,7 @@ export const getPartNumberSumForLine = (
   var sum = 0;
   const matchPairs = getMatchPairArrayForLine(line);
   matchPairs.forEach((pair) => {
-    if (isPartNumber(pair.string, pair.index, previousLine, nextLine)) {
+    if (isPartNumber(pair.string, pair.index, line, previousLine, nextLine)) {
       sum += Number(pair.string);
     }
   });
