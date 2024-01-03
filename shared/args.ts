@@ -16,7 +16,7 @@ export const getExpectedValue = () => {
 };
 
 export const getFilePath = (currentPath: string = ".") => {
-  return String(getFlagValueFromArgs("-f", `${currentPath}/input.txt`));
+  return String(getFlagValueFromArgs("-f", `${currentPath}/data/input.txt`));
 };
 
 export const getDebug = () => {

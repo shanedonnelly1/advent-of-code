@@ -9,7 +9,7 @@ export const isPartNumber = (
   previousLine?: string,
   nextLine?: string
 ) => {
-  const regEx = /[!@#\$%\^&\*\(\)_\-\+=]/;
+  const regEx = /[!@#\$%\^&\*\(\)_\-\+=/]/;
   const valueLength = value.length;
   // Check for parts on current line - before and after the value
   if (position > 0 && regEx.test(currentLine[position - 1])) {
